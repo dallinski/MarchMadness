@@ -1,0 +1,41 @@
+hr.section_hr, div.section_sidebar {
+  display: none;
+}
+h4 {
+  color: #444;
+  text-transform: uppercase;
+}
+.bracket-container {
+  margin-top: 15px;
+  height: 1000px;
+  position: relative;
+  font-family: 'Helvetica Neue', Helvetica, Arial, FreeSans, sans-serif;
+}
+.round {
+  position: absolute;
+  top: 0;
+  width: 950px;
+}
+.round strong, .round strong span.seed, .round strong span.score {
+  color: #4aa5ef;
+}
+#round2 {
+  left: 115px;
+  width: 720px;
+}
+#round3 {
+  left: 230px;
+  width: 490px;
+}
+#round4 {
+  left: 345px;
+  width: 260px;
+}
+#round5 {
+  left: 280px;
+  width: 380px;
+}
+#round6 {
+  left: 395px;
+  width: 150px;
+}

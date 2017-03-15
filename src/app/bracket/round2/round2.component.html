@@ -1,0 +1,152 @@
+<button class="simulation-button" (click)="runSimulation()">Run Simulation</button>
+<h3>
+  Round Two (2010 NCAA Men's Basketball Tournament)
+</h3>
+<div class="region region1">
+  <h4 class="region1">
+    EAST
+  </h4>
+  <div id="match41" class="match m1">
+    <p rel="match18" class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(65) | team: 'seed'}}</span> {{tournamentRunner.getWinner(65) | team: 'name'}}
+    </p>
+    <p rel="match19" class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(66) | team: 'seed'}}</span> {{tournamentRunner.getWinner(66) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match42" class="match m2">
+    <p rel="match20" class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(4) | team: 'seed'}}</span> {{tournamentRunner.getWinner(4) | team: 'name'}}
+    </p>
+    <p rel="match21" class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(5) | team: 'seed'}}</span> {{tournamentRunner.getWinner(5) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match43" class="match m3">
+    <p rel="match22" class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(6) | team: 'seed'}}</span> {{tournamentRunner.getWinner(6) | team: 'name'}}
+    </p>
+    <p rel="match23" class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(7) | team: 'seed'}}</span> {{tournamentRunner.getWinner(7) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match44" class="match m4">
+    <p rel="match24" class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(8) | team: 'seed'}}</span> {{tournamentRunner.getWinner(8) | team: 'name'}}
+    </p>
+    <p rel="match25" class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(9) | team: 'seed'}}</span> {{tournamentRunner.getWinner(9) | team: 'name'}}
+    </p>
+  </div>
+</div>
+<div class="region region2">
+  <h4 class="region2">
+    WEST
+  </h4>
+  <div id="match45" class="match m1">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(26) | team: 'seed'}}</span> {{tournamentRunner.getWinner(26) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(27) | team: 'seed'}}</span> {{tournamentRunner.getWinner(27) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match46" class="match m2">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(28) | team: 'seed'}}</span> {{tournamentRunner.getWinner(28) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(29) | team: 'seed'}}</span> {{tournamentRunner.getWinner(29) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match47" class="match m3">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(30) | team: 'seed'}}</span> {{tournamentRunner.getWinner(30) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(31) | team: 'seed'}}</span> {{tournamentRunner.getWinner(31) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match48" class="match m4">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(32) | team: 'seed'}}</span> {{tournamentRunner.getWinner(32) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(33) | team: 'seed'}}</span> {{tournamentRunner.getWinner(33) | team: 'name'}}
+    </p>
+  </div>
+</div>
+<div class="region region3">
+  <h4 class="region3">
+    MIDWEST
+  </h4>
+  <div id="match3" class="match m1">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(18) | team: 'seed'}}</span> {{tournamentRunner.getWinner(18) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(19) | team: 'seed'}}</span> {{tournamentRunner.getWinner(19) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match34" class="match m2">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(20) | team: 'seed'}}</span> {{tournamentRunner.getWinner(20) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(21) | team: 'seed'}}</span> {{tournamentRunner.getWinner(21) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match35" class="match m3">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(22) | team: 'seed'}}</span> {{tournamentRunner.getWinner(22) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(23) | team: 'seed'}}</span> {{tournamentRunner.getWinner(23) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match36" class="match m4">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(24) | team: 'seed'}}</span> {{tournamentRunner.getWinner(24) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(25) | team: 'seed'}}</span> {{tournamentRunner.getWinner(25) | team: 'name'}}
+    </p>
+  </div>
+</div>
+<div class="region region4">
+  <h4 class="region4">
+    South
+  </h4>
+  <div id="match37" class="match m1">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(10) | team: 'seed'}}</span> {{tournamentRunner.getWinner(10) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(11) | team: 'seed'}}</span> {{tournamentRunner.getWinner(11) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match38" class="match m2">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(12) | team: 'seed'}}</span> {{tournamentRunner.getWinner(12) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(13) | team: 'seed'}}</span> {{tournamentRunner.getWinner(13) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match39" class="match m3">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(14) | team: 'seed'}}</span> {{tournamentRunner.getWinner(14) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(15) | team: 'seed'}}</span> {{tournamentRunner.getWinner(15) | team: 'name'}}
+    </p>
+  </div>
+  <div id="match40" class="match m4">
+    <p class="slot slot1">
+      <span class="seed">{{tournamentRunner.getWinner(16) | team: 'seed'}}</span> {{tournamentRunner.getWinner(16) | team: 'name'}}
+    </p>
+    <p class="slot slot2">
+      <span class="seed">{{tournamentRunner.getWinner(17) | team: 'seed'}}</span> {{tournamentRunner.getWinner(17) | team: 'name'}}
+    </p>
+  </div>
+</div>

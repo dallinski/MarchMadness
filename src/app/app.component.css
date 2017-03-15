@@ -1,0 +1,10 @@
+bracket {
+  width: 970px;
+  padding-top: 10px;
+  margin: 0 auto;
+}
+
+.blank-space {
+  height: 10px;
+  width: 100%;
+}
