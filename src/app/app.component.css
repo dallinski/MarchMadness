@@ -3,9 +3,16 @@ bracket {
   padding-top: 10px;
   margin: 0 30px;
   display: inline-block;
+  vertical-align: top;
 }
 
 algorithm-box {
-  position: absolute;
-  top: 50px;
+  display: inline-block;
+  vertical-align: top;
+}
+
+winners {
+  margin-top: 20px;
+  display: inline-block;
+  vertical-align: top;
 }

@@ -4,14 +4,18 @@ import {TeamsService} from './teams.service';
 
 @Injectable()
 export class TournamentRunnerService {
+  public overallWinnerCount: Map<string, number>;
+
+  protected teamsService: TeamsService;
+
   private algorithm: any;
   private winners: Map<number, Team>;
   private simulationQueue: Array<Simulation>;
-  protected teamsService: TeamsService;
 
   constructor(teamsService: TeamsService) {
     this.teamsService = teamsService;
     this.winners = new Map<number, Team>();
+    this.overallWinnerCount = new Map<string, number>();
     this.simulationQueue = [];
   }
 
@@ -153,6 +157,17 @@ export class TournamentRunnerService {
   simulateRound6(): void {
     this.queueSimulation(64, 0, this.getWinner(62), this.getWinner(63));
     this.simulateGamesInQueue();
+
+    this.incrementWinnerCount(this.getWinner(64));
+  }
+
+  incrementWinnerCount(winner: Team) {
+    const currentWinnersTotalWinCount: number = this.overallWinnerCount.get(winner.name);
+    if (currentWinnersTotalWinCount) {
+      this.overallWinnerCount.set(winner.name, currentWinnersTotalWinCount + 1);
+    } else {
+      this.overallWinnerCount.set(winner.name, 1);
+    }
   }
 }
 

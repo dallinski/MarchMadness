@@ -1,0 +1,6 @@
+<div class="sim-count">
+  Number of Simulations Run: {{getNumberOfSimulationsRun()}}
+</div>
+<div *ngFor="let winnerName of getKeys()" class="entry">
+  <span class="team-name">{{winnerName}}</span><span class="win-percent">{{getWinPercent(winnerName) | percent}}</span>
+</div>

@@ -16,4 +16,10 @@ export class BracketComponent {
   simulateAllRounds(): void {
     this.tournamentRunner.simulateAllRounds();
   }
+
+  simulateXTimes(x: number): void {
+    for (let i = 0; i < x; i++) {
+      this.tournamentRunner.simulateAllRounds();
+    }
+  }
 }

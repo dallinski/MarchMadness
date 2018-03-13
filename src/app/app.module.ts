@@ -15,6 +15,7 @@ import { TeamsService } from './teams.service';
 import { TeamPipePipe } from './team-pipe.pipe';
 import { TournamentRunnerService } from './tournament-runner.service';
 import { AlgorithmBoxComponent } from './algorithm-box/algorithm-box.component';
+import { WinnersComponent } from './winners/winners.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { AlgorithmBoxComponent } from './algorithm-box/algorithm-box.component';
     Round5Component,
     Round6Component,
     TeamPipePipe,
-    AlgorithmBoxComponent
+    AlgorithmBoxComponent,
+    WinnersComponent
   ],
   imports: [
     BrowserModule,
