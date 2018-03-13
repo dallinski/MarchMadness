@@ -149,8 +149,8 @@ export class TournamentRunnerService {
   }
 
   simulateRound5(): void {
-    this.queueSimulation(63, 1, this.getWinner(58), this.getWinner(61));
-    this.queueSimulation(62, 1, this.getWinner(60), this.getWinner(59));
+    this.queueSimulation(63, 1, this.getWinner(58), this.getWinner(60));
+    this.queueSimulation(62, 1, this.getWinner(59), this.getWinner(61));
     this.simulateGamesInQueue();
   }
 

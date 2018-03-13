@@ -137,10 +137,10 @@ export class AppComponent implements OnInit {
       }
 
       val +=
-        (team.reb_per_game /
-         45 + team.blocks_per_game /
-         5 + team.steals_per_game / 5
-        ) /
+        (team.reb_per_game / 45 +
+         team.blocks_per_game / 5 +
+         team.steals_per_game / 5)
+        /
         (20 * CONF_SOS[team.conf] *
          team.win_pct);
 
