@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { TeamsService } from '../../teams.service';
 import { Round } from '../round';
 import {TournamentRunnerService} from '../../tournament-runner.service';
@@ -8,18 +8,10 @@ import {TournamentRunnerService} from '../../tournament-runner.service';
   templateUrl: './round6.component.html',
   styleUrls: ['./round6.component.css']
 })
-export class Round6Component extends Round implements OnInit {
+export class Round6Component extends Round {
 
   constructor(teamsService: TeamsService, tournamentRunner: TournamentRunnerService) {
     super(teamsService, tournamentRunner);
-  }
-
-  ngOnInit() {
-  }
-
-  runSimulation(): void {
-    this.tournamentRunner.queueSimulation(64, 0, this.tournamentRunner.getWinner(62), this.tournamentRunner.getWinner(63));
-    this.tournamentRunner.simulateGamesInQueue();
   }
 
 }

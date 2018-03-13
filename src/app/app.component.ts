@@ -11,7 +11,6 @@ import {TournamentRunnerService} from './tournament-runner.service';
 export class AppComponent implements OnInit {
 
   public algorithmToTest: (game: any, team1: Team, team2: Team) => void;
-  public teamsJsonPath: string;
 
   private tournamentRunner: TournamentRunnerService;
   private teamsService: TeamsService;
@@ -183,8 +182,8 @@ export class AppComponent implements OnInit {
       seedDiff -= 5.0;
     }
 
-    console.log(team1.name + ": " + team1Value);
-    console.log(team2.name + ": " + team2Value);
+    console.log(team1.name + ': ' + team1Value);
+    console.log(team2.name + ': ' + team2Value);
 
     // the closer the seeds, the more randomness matters
     if (team1Value > team2Value) {
@@ -208,7 +207,7 @@ export class AppComponent implements OnInit {
   ngOnInit() {
     this.algorithmToTest = this.algorithm2018;
     this.tournamentRunner.setAlgorithm(this.algorithmToTest);
-    this.teamsService.setTeamsJson("./assets/teams_2018.json");
+    this.teamsService.setTeamsJson('./assets/teams_2018.json');
   }
 
 }
