@@ -110,38 +110,14 @@ export class AppComponent implements OnInit {
   public algorithm2018(game, team1: Team, team2: Team) {
     // updated to 2018 CONF_SOS stats
     const CONF_SOS = {
-      'BIG12': 1,
-      'BIGE': 2,
-      'ACC': 3,
-      'SEC': 4,
-      'PAC12': 5,
-      'BIG10': 6,
-      'AAC': 7,
-      'MVC': 8,
-      'MWC': 9,
-      'MIDAM': 10,
-      'ATL10': 11,
-      'COL': 12,
-      'WCC': 13,
-      'WAC': 14,
-      'USA': 15,
-      'SOUTH': 16,
-      'SUMM': 17,
-      'MAAC': 18,
-      'BSKY': 19,
-      'OVC': 20,
-      'BELT': 21,
-      'BIGW': 22,
-      'AEAST': 23,
-      'IVY': 24,
-      'BSOU': 25,
-      'HORIZ': 26,
-      'PAT': 27,
-      'NEA': 28,
-      'LAND': 29,
-      'ASUN': 30,
-      'MEAC': 31,
-      'SWAC': 32
+      'BIG12': 1,   'BIGE': 2,     'ACC': 3,     'SEC': 4,
+      'PAC12': 5,   'BIG10': 6,    'AAC': 7,     'MVC': 8,
+      'MWC': 9,     'MIDAM': 10,   'ATL10': 11,  'COL': 12,
+      'WCC': 13,    'WAC': 14,     'USA': 15,    'SOUTH': 16,
+      'SUMM': 17,   'MAAC': 18,    'BSKY': 19,   'OVC': 20,
+      'BELT': 21,   'BIGW': 22,    'AEAST': 23,  'IVY': 24,
+      'BSOU': 25,   'HORIZ': 26,   'PAT': 27,    'NEA': 28,
+      'LAND': 29,   'ASUN': 30,    'MEAC': 31,   'SWAC': 32
     };
 
     const getValue = function(team: Team) {
@@ -160,7 +136,13 @@ export class AppComponent implements OnInit {
         val += (team.three_point_pct - 40) / 6;
       }
 
-      val += (team.reb_per_game / 45 + team.blocks_per_game / 5 + team.steals_per_game / 5) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val +=
+        (team.reb_per_game /
+         45 + team.blocks_per_game /
+         5 + team.steals_per_game / 5
+        ) /
+        (20 * CONF_SOS[team.conf] *
+         team.win_pct);
 
       val -= (team.turnovers_per_game / 10);
 
@@ -178,12 +160,10 @@ export class AppComponent implements OnInit {
     if (seedDiff === 0) {
       seedDiff = 0.5;
     }
-    if (team1.seed === 12 && team2.seed === 5 || team2.seed === 12 && team1.seed === 5) {
+    if (team1.seed === 12 && team2.seed === 5 ||
+        team2.seed === 12 && team1.seed === 5) {
       seedDiff -= 5.0;
     }
-
-    console.log(team1.name + ': ' + team1Value);
-    console.log(team2.name + ': ' + team2Value);
 
     // the closer the seeds, the more randomness matters
     if (team1Value > team2Value) {
