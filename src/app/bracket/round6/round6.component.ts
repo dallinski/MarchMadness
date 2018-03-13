@@ -19,7 +19,7 @@ export class Round6Component extends Round implements OnInit {
 
   runSimulation(): void {
     this.tournamentRunner.queueSimulation(64, 0, this.tournamentRunner.getWinner(62), this.tournamentRunner.getWinner(63));
-    this.tournamentRunner.simulateAll();
+    this.tournamentRunner.simulateGamesInQueue();
   }
 
 }

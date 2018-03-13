@@ -30,7 +30,7 @@ export class Round3Component extends Round implements OnInit {
     this.tournamentRunner.queueSimulation(51, 3, this.tournamentRunner.getWinner(37), this.tournamentRunner.getWinner(38));
     this.tournamentRunner.queueSimulation(52, 3, this.tournamentRunner.getWinner(39), this.tournamentRunner.getWinner(40));
 
-    this.tournamentRunner.simulateAll();
+    this.tournamentRunner.simulateGamesInQueue();
   }
 
 }

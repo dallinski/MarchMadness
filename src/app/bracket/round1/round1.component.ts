@@ -54,7 +54,7 @@ export class Round1Component extends Round implements OnInit {
     this.tournamentRunner.queueSimulation(16, 5, this.teamsService.getTeam('south', 7), this.teamsService.getTeam('south', 10));
     this.tournamentRunner.queueSimulation(11, 5, this.teamsService.getTeam('south', 8), this.teamsService.getTeam('south', 9));
 
-    this.tournamentRunner.simulateAll();
+    this.tournamentRunner.simulateGamesInQueue();
   }
 
 }

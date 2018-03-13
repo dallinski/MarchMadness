@@ -11,19 +11,15 @@ export class TeamsService {
   east: Region;
   west: Region;
 
+  private http: Http;
+
   constructor(http: Http) {
     this.midwest = new Region(RegionName.MIDWEST);
     this.south = new Region(RegionName.SOUTH);
     this.east = new Region(RegionName.EAST);
     this.west = new Region(RegionName.WEST);
-    http.get('./assets/teams_2017.json').map((resp: Response) => resp.json()).subscribe(
-      (teamsJson: any) => {
-        this.importTeams(this.midwest, teamsJson.midwest);
-        this.importTeams(this.south, teamsJson.south);
-        this.importTeams(this.east, teamsJson.east);
-        this.importTeams(this.west, teamsJson.west);
-      }
-    );
+
+    this.http = http;
   }
 
   public getTeam(regionName: string, seed: number): Team {
@@ -54,6 +50,17 @@ export class TeamsService {
       default:
         throw new Error('regionName error');
     }
+  }
+
+  public setTeamsJson(teamsJsonPath: string): void {
+    this.http.get(teamsJsonPath).map((resp: Response) => resp.json()).subscribe(
+      (teamsJson: any) => {
+        this.importTeams(this.midwest, teamsJson.midwest);
+        this.importTeams(this.south, teamsJson.south);
+        this.importTeams(this.east, teamsJson.east);
+        this.importTeams(this.west, teamsJson.west);
+      }
+    );
   }
 
   private importTeams(region: Region, jsonTeams: Map<number, any>): void {

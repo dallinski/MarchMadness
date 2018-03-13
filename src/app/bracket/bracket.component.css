@@ -6,7 +6,8 @@ h4 {
   text-transform: uppercase;
 }
 .bracket-container {
-  margin-top: 15px;
+  margin-top: 50px;
+  margin-left: 30px;
   height: 1000px;
   position: relative;
   font-family: 'Helvetica Neue', Helvetica, Arial, FreeSans, sans-serif;
@@ -38,4 +39,13 @@ h4 {
 #round6 {
   left: 395px;
   width: 150px;
+}
+#simButton {
+  position: absolute;
+  top: 0px;
+  padding: 10px;
+  left: 410px;
+  background-color: #ff0000d6;
+  color: white;
+  border-radius: 10px;
 }
