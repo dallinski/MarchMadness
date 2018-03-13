@@ -7,6 +7,8 @@ import {TournamentRunnerService} from '../tournament-runner.service';
   styleUrls: ['./bracket.component.css']
 })
 export class BracketComponent {
+  public simulationNumber = 1;
+
   private tournamentRunner: TournamentRunnerService;
 
   constructor(tournamentRunner: TournamentRunnerService) {
@@ -17,8 +19,8 @@ export class BracketComponent {
     this.tournamentRunner.simulateAllRounds();
   }
 
-  simulateXTimes(x: number): void {
-    for (let i = 0; i < x; i++) {
+  simulateXTimes(): void {
+    for (let i = 0; i < this.simulationNumber; i++) {
       this.tournamentRunner.simulateAllRounds();
     }
   }

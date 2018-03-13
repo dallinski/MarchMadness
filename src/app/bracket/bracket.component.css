@@ -40,21 +40,20 @@ h4 {
   left: 395px;
   width: 150px;
 }
-#simOnceButton {
+.simulation-button {
   position: absolute;
   top: 0px;
+  left: 420px;
+}
+#simXButton {
   padding: 10px;
-  left: 427px;
   background-color: #ff0000d6;
   color: white;
   border-radius: 10px;
 }
-#simXButton {
-  position: absolute;
-  top: 40px;
-  padding: 10px;
-  left: 420px;
-  background-color: #ff0000d6;
-  color: white;
-  border-radius: 10px;
+.simulation-number {
+  min-width: 30px;
+  max-width: 80px;
+  display: block;
+  margin: 0 auto;
 }
