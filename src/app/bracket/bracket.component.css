@@ -42,7 +42,7 @@ h4 {
 }
 .simulation-button {
   position: absolute;
-  top: 0px;
+  top: -15px;
   left: 420px;
 }
 #simXButton {
@@ -55,5 +55,9 @@ h4 {
   min-width: 30px;
   max-width: 80px;
   display: block;
-  margin: 0 auto;
+  margin: 10px auto;
+}
+select {
+  display: block;
+  margin: 10px auto;
 }

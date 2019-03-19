@@ -1,5 +1,10 @@
 <div class="bracket-container">
   <div class="simulation-button">
+    <select [(ngModel)]="selectedYear" (ngModelChange)="updateYear()">
+      <option [value]="2017">2017</option>
+      <option [value]="2018">2018</option>
+      <option [value]="2019">2019</option>
+    </select>
     <button (click)="simulateXTimes(simulationNumber)" id="simXButton">Simulate {{simulationNumber}} Time{{simulationNumber === 1 ? "" : "s"}}</button>
     <input class="simulation-number" type="number" [(ngModel)]="simulationNumber" min="1" max="10000">
   </div>

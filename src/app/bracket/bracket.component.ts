@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, EventEmitter, Output} from '@angular/core';
 import {TournamentRunnerService} from '../tournament-runner.service';
 
 @Component({
@@ -8,6 +8,8 @@ import {TournamentRunnerService} from '../tournament-runner.service';
 })
 export class BracketComponent {
   public simulationNumber = 1;
+  public selectedYear = 2019;
+  @Output() public onSelectedYearChange: EventEmitter<number> = new EventEmitter();
 
   private tournamentRunner: TournamentRunnerService;
 
@@ -23,5 +25,9 @@ export class BracketComponent {
     for (let i = 0; i < this.simulationNumber; i++) {
       this.tournamentRunner.simulateAllRounds();
     }
+  }
+
+  updateYear(): void {
+    this.onSelectedYearChange.emit(Number(this.selectedYear));
   }
 }

@@ -179,15 +179,115 @@ export class AppComponent implements OnInit {
     }
   };
 
+  public algorithm2019(game, team1: Team, team2: Team) {
+    // updated to 2019 CONF_SOS stats
+    const CONF_SOS = {
+      'Big 12': 1,        'ACC': 2,         'Big Ten': 3,  'SEC': 4,
+      'Big East': 5,      'AAC': 6,         'Pac-12': 7,   'WCC': 8,
+      'MAC': 9,           'Ivy League': 10, 'SoCon': 11,   'Atlantic 10': 12,
+      'C-USA': 13,        'MVC': 14,        'WAC': 15,     'MWC': 16,
+      'Sun Belt': 17,     'COL': 18,        'Patriot': 19, 'OVC': 20,
+      'ASUN': 21,         'Horizon': 22,    'Big Sky': 23, 'Big West': 24,
+      'America East': 25, 'Big South': 26,  'SUMM': 27,    'NEC': 28,
+      'MAAC': 29,         'Southland': 30,  'SWAC': 31,    'MEAC': 32
+    };
+
+    const getValue = function(team: Team) {
+      let val = 0;
+      val -= CONF_SOS[team.conf] / 4.5;
+
+      val += (team.field_goals_made / team.games_played) / 70;
+
+      if (team.field_goal_pct > 50) {
+        val += (team.field_goal_pct - 50) / 5;
+      }
+      if (team.free_throw_pct > 75) {
+        val += (team.free_throw_pct - 75) / 6;
+      }
+      if (team.three_point_pct > 40) {
+        val += (team.three_point_pct - 40) / 6;
+      }
+
+      val +=
+        (team.reb_per_game / 45 +
+         team.blocks_per_game / 5 +
+         team.steals_per_game / 5)
+        /
+        (20 * CONF_SOS[team.conf] *
+         team.win_pct);
+
+      val -= (team.turnovers_per_game / 10);
+
+      val -= team.rpi / 100;
+
+      val += 5.5 / Math.sqrt(team.official_rank + 25);
+
+      if (!CONF_SOS[team.conf]) {
+        debugger;
+      }
+
+      return val;
+    };
+
+    let team1Value = getValue(team1);
+    let team2Value = getValue(team2);
+
+    let seedDiff = Math.abs(team1.seed - team2.seed);
+    if (seedDiff === 0) {
+      seedDiff = 0.5;
+    }
+    if (team1.seed === 12 && team2.seed === 5 ||
+        team2.seed === 12 && team1.seed === 5) {
+      seedDiff -= 5.0;
+    }
+
+    // the closer the seeds, the more randomness matters
+    if (team1Value > team2Value) {
+      team2Value += Math.random() * 8 / seedDiff;
+    } else {
+      team1Value += Math.random() * 8 / seedDiff;
+    }
+
+    if (team1Value > team2Value) {
+      team1.winsGame();
+    } else {
+      team2.winsGame();
+    }
+  };
+
   constructor(tournamentRunner: TournamentRunnerService, teamsService: TeamsService) {
     this.tournamentRunner = tournamentRunner;
     this.teamsService = teamsService;
   }
 
   ngOnInit() {
-    this.algorithmToTest = this.algorithm2018;
+    this.algorithmToTest = this.algorithm2019;
     this.tournamentRunner.setAlgorithm(this.algorithmToTest);
-    this.teamsService.setTeamsJson('./assets/teams_2018.json');
+    this.teamsService.setTeamsJson('./assets/teams_2019.json');
+  }
+
+  updateSelectedYear(selectedYear: number): void {
+    switch (selectedYear) {
+      case 2017: {
+        this.algorithmToTest = this.algorithm2017;
+        this.teamsService.setTeamsJson('./assets/teams_2017.json');
+        break;
+      }
+      case 2018: {
+        this.algorithmToTest = this.algorithm2018;
+        this.teamsService.setTeamsJson('./assets/teams_2018.json');
+        break;
+      }
+      case 2019: {
+        this.algorithmToTest = this.algorithm2019;
+        this.teamsService.setTeamsJson('./assets/teams_2019.json');
+        break;
+      }
+      default: {
+        throw new Error('Unexpected year selected');
+      }
+    }
+    this.tournamentRunner.setAlgorithm(this.algorithmToTest);
   }
 
 }
