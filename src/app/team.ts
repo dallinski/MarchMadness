@@ -29,6 +29,28 @@ export class Team {
   assists_per_game: number;
   turnovers: number;
   turnovers_per_game: number;
+  total_points: number;
+  ppg: number;
+  opp_fg: number;
+  opp_fga: number;
+  opp_fg_per: number;
+  opp_3p_fga: number;
+  opp_3p_fg: number;
+  opp_3p_fg_per: number;
+  opp_tot_to: number;
+  opp_topg: number;
+  to_ratio: number;
+  opp_tot_reb: number;
+  opp_rpg: number;
+  reb_margin: number;
+  own_tot_pts: number;
+  own_ppg: number;
+  opp_tot_pts: number;
+  opp_ppg: number;
+  pts_margin: number;
+  tot_pf: number;
+  pfpg: number;
+  dq: number;
 
   winsGame: any;
 

@@ -1,4 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
+import {Team} from '../team';
 
 @Component({
   selector: 'winners',
@@ -6,7 +7,8 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./winners.component.css']
 })
 export class WinnersComponent implements OnInit {
-  @Input() public winnerCountMap: Map<string, number>;
+  @Input() public winnerCountMap: Map<Team, number>;
+  @Input() public sweet16EntryCountMap: Map<Team, number>;
 
   constructor() { }
 
@@ -14,20 +16,38 @@ export class WinnersComponent implements OnInit {
   }
 
   getKeys() {
-    const teamNames: string[] = Array.from(this.winnerCountMap.keys());
-    teamNames.sort((teamA: string, teamB: string) => {
+    const teams: Team[] = Array.from(this.winnerCountMap.keys());
+    teams.sort((teamA: Team, teamB: Team) => {
       return this.winnerCountMap.get(teamB) - this.winnerCountMap.get(teamA);
     });
-    return teamNames;
+    return teams;
   }
 
-  getWinPercent(teamName: string): number {
+  getSweet16Entrants() {
+    const teams: Team[] = Array.from(this.sweet16EntryCountMap.keys());
+    teams.sort((teamA: Team, teamB: Team) => {
+      return this.sweet16EntryCountMap.get(teamB) - this.sweet16EntryCountMap.get(teamA);
+    });
+    return teams;
+  }
+
+  getWinPercent(team: Team): number {
     if (this.winnerCountMap.size === 1) {
       return 1;
     } else {
       const numberOfSimulationRuns: number = this.getNumberOfSimulationsRun();
-      const numberOfWinsForTeam: number = this.winnerCountMap.get(teamName);
+      const numberOfWinsForTeam: number = this.winnerCountMap.get(team);
       return numberOfWinsForTeam / numberOfSimulationRuns;
+    }
+  }
+
+  getSweet16EntryPercent(team: Team): number {
+    if (this.sweet16EntryCountMap.size === 1) {
+      return 1;
+    } else {
+      const numberOfSimulationRuns: number = this.getNumberOfSimulationsRun();
+      const numberOfSweet16EntriesForTeam: number = this.sweet16EntryCountMap.get(team);
+      return numberOfSweet16EntriesForTeam / numberOfSimulationRuns;
     }
   }
 

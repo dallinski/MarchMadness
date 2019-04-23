@@ -1,6 +1,12 @@
 <div class="sim-count">
   Number of Simulations Run: {{getNumberOfSimulationsRun()}}
 </div>
-<div *ngFor="let winnerName of getKeys()" class="entry">
-  <span class="team-name">{{winnerName}}</span><span class="win-percent">{{getWinPercent(winnerName) | percent}}</span>
+<div *ngFor="let team of getKeys()" class="entry">
+  <span class="team-name">{{team.name}} ({{team.seed}})</span><span class="win-percent">{{getWinPercent(team) | percent}}</span>
+</div>
+<div class="sweet-16-count">
+  Percent of simulations where team is in Sweet 16
+</div>
+<div *ngFor="let team of getSweet16Entrants()" class="entry">
+  <span class="team-name">{{team.name}} ({{team.seed}})</span><span class="win-percent">{{getSweet16EntryPercent(team) | percent}}</span>
 </div>

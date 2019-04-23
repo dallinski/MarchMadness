@@ -122,33 +122,35 @@ export class AppComponent implements OnInit {
 
     const getValue = function(team: Team) {
       let val = 0;
-      val -= CONF_SOS[team.conf] / 4.5;
 
+      // positive attributes
       val += (team.field_goals_made / team.games_played) / 70;
-
-      if (team.field_goal_pct > 50) {
-        val += (team.field_goal_pct - 50) / 5;
+      val += (team.reb_per_game / 45) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val += (team.blocks_per_game / 5) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val += (team.steals_per_game / 5) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val += (team.field_goal_pct - 50) / 5;
+      val += (team.free_throw_pct - 75) / 6;
+      val += (team.three_point_pct - 40) / 6;
+      val += 3.0 / Math.sqrt(team.rpi + 25);
+      val += 2.0 / Math.sqrt(team.official_rank + 25);
+      val += 0.5 / CONF_SOS[team.conf];
+      val += team.reb_margin * 0.5;
+      val += team.pts_margin * 0.2;
+      val += (team.total_assists / team.turnovers) * 0.5;
+      if (team.ppg > 70) {
+        val += (team.ppg - 70) / 5;
       }
-      if (team.free_throw_pct > 75) {
-        val += (team.free_throw_pct - 75) / 6;
-      }
-      if (team.three_point_pct > 40) {
-        val += (team.three_point_pct - 40) / 6;
-      }
 
-      val +=
-        (team.reb_per_game / 45 +
-         team.blocks_per_game / 5 +
-         team.steals_per_game / 5)
-        /
-        (20 * CONF_SOS[team.conf] *
-         team.win_pct);
-
+      // negative attributes
       val -= (team.turnovers_per_game / 10);
-
-      val -= team.rpi / 100;
-
-      val += 5.5 / Math.sqrt(team.official_rank + 25);
+      val -= team.pfpg * 0.05;
+      val -= (team.opp_3p_fg_per - 0.3) * 0.1;
+      val -= (team.free_throws_made / team.field_goals_attempted) * 10;
+      val -= (35 - team.def_reb) / team.games_played;
+      val -= (team.opp_3p_fg_per * 5) / 100;
+      if (team.opp_ppg > 70 && team.pts_margin < 2.0) {
+        val -= (team.opp_ppg - 70) / 15;
+      }
 
       return val;
     };
@@ -161,15 +163,15 @@ export class AppComponent implements OnInit {
       seedDiff = 0.5;
     }
     if (team1.seed === 12 && team2.seed === 5 ||
-        team2.seed === 12 && team1.seed === 5) {
+      team2.seed === 12 && team1.seed === 5) {
       seedDiff -= 5.0;
     }
 
     // the closer the seeds, the more randomness matters
     if (team1Value > team2Value) {
-      team2Value += Math.random() * 8 / seedDiff;
+      team2Value += Math.random() * 9 / seedDiff;
     } else {
-      team1Value += Math.random() * 8 / seedDiff;
+      team1Value += Math.random() * 9 / seedDiff;
     }
 
     if (team1Value > team2Value) {
@@ -194,36 +196,37 @@ export class AppComponent implements OnInit {
 
     const getValue = function(team: Team) {
       let val = 0;
-      val -= CONF_SOS[team.conf] / 4.5;
 
+      // positive attributes
       val += (team.field_goals_made / team.games_played) / 70;
-
-      if (team.field_goal_pct > 50) {
-        val += (team.field_goal_pct - 50) / 5;
+      val += (team.reb_per_game / 45) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val += (team.blocks_per_game / 5) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val += (team.steals_per_game / 5) / (20 * CONF_SOS[team.conf] * team.win_pct);
+      val += (team.field_goal_pct - 50) / 5;
+      val += (team.free_throw_pct - 75) / 6;
+      val += (team.three_point_pct - 40) / 6;
+      val += 3.0 / Math.sqrt(team.rpi + 25);
+      val += 2.0 / Math.sqrt(team.official_rank + 25);
+      val += 0.5 / CONF_SOS[team.conf];
+      val += team.reb_margin * 0.5;
+      val += team.pts_margin * 0.2;
+      val += (team.total_assists / team.turnovers) * 0.5;
+      if (team.ppg > 70) {
+        val += (team.ppg - 70) / 15;
       }
-      if (team.free_throw_pct > 75) {
-        val += (team.free_throw_pct - 75) / 6;
-      }
-      if (team.three_point_pct > 40) {
-        val += (team.three_point_pct - 40) / 6;
+      if (team.opp_ppg < 60) {
+        val += (70 - team.opp_ppg) / 15;
       }
 
-      val +=
-        (team.reb_per_game / 45 +
-         team.blocks_per_game / 5 +
-         team.steals_per_game / 5)
-        /
-        (20 * CONF_SOS[team.conf] *
-         team.win_pct);
-
+      // negative attributes
       val -= (team.turnovers_per_game / 10);
-
-      val -= team.rpi / 100;
-
-      val += 5.5 / Math.sqrt(team.official_rank + 25);
-
-      if (!CONF_SOS[team.conf]) {
-        debugger;
+      val -= team.pfpg * 0.05;
+      val -= (team.opp_3p_fg_per - 0.3) * 0.1;
+      val -= (team.free_throws_made / team.field_goals_attempted) * 10;
+      val -= (35 - team.def_reb) / team.games_played;
+      val -= (team.opp_3p_fg_per * 5) / 100;
+      if (team.opp_ppg > 70 && team.pts_margin < 5.0) {
+        val -= (team.opp_ppg - 70) / 15;
       }
 
       return val;
@@ -241,12 +244,18 @@ export class AppComponent implements OnInit {
       seedDiff -= 5.0;
     }
 
+    console.log(team1.name + ': ' + team1Value);
+    console.log(team2.name + ': ' + team2Value);
+
     // the closer the seeds, the more randomness matters
     if (team1Value > team2Value) {
-      team2Value += Math.random() * 8 / seedDiff;
+      team2Value += Math.random() * 30 / seedDiff;
     } else {
-      team1Value += Math.random() * 8 / seedDiff;
+      team1Value += Math.random() * 30 / seedDiff;
     }
+
+    console.log('After: ' + team1.name + ': ' + team1Value);
+    console.log('After: ' + team2.name + ': ' + team2Value);
 
     if (team1Value > team2Value) {
       team1.winsGame();

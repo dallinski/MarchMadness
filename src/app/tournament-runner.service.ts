@@ -4,7 +4,8 @@ import {TeamsService} from './teams.service';
 
 @Injectable()
 export class TournamentRunnerService {
-  public overallWinnerCount: Map<string, number>;
+  public overallWinnerCount: Map<Team, number>;
+  private sweet16EntryCountMap: Map<Team, number>;
 
   protected teamsService: TeamsService;
 
@@ -15,7 +16,8 @@ export class TournamentRunnerService {
   constructor(teamsService: TeamsService) {
     this.teamsService = teamsService;
     this.winners = new Map<number, Team>();
-    this.overallWinnerCount = new Map<string, number>();
+    this.sweet16EntryCountMap = new Map<Team, number>();
+    this.overallWinnerCount = new Map<Team, number>();
     this.simulationQueue = [];
   }
 
@@ -40,12 +42,12 @@ export class TournamentRunnerService {
   }
 
   simulateAllRounds(): void {
-    this.simulateRound1();
-    this.simulateRound2();
-    this.simulateRound3();
-    this.simulateRound4();
-    this.simulateRound5();
-    this.simulateRound6();
+    this.simulateRoundOf64();
+    this.simulateRoundOf32();
+    this.simulateSweet16();
+    this.simulateElite8();
+    this.simulateFinalFour();
+    this.simulateNationalChampionship();
   }
 
   getWinner(game: number): Team {
@@ -59,7 +61,7 @@ export class TournamentRunnerService {
     this.simulationQueue.push(new Simulation(game, round, teamA, teamB));
   }
 
-  simulateRound1(): void {
+  simulateRoundOf64(): void {
     this.queueSimulation(18, 5, this.teamsService.getTeam('midwest', 1), this.teamsService.getTeam('midwest', 16));
     this.queueSimulation(25, 5, this.teamsService.getTeam('midwest', 2), this.teamsService.getTeam('midwest', 15));
     this.queueSimulation(23, 5, this.teamsService.getTeam('midwest', 3), this.teamsService.getTeam('midwest', 14));
@@ -99,7 +101,7 @@ export class TournamentRunnerService {
     this.simulateGamesInQueue();
   }
 
-  simulateRound2(): void {
+  simulateRoundOf32(): void {
     this.queueSimulation(41, 4, this.getWinner(18), this.getWinner(19));
     this.queueSimulation(42, 4, this.getWinner(20), this.getWinner(21));
     this.queueSimulation(43, 4, this.getWinner(22), this.getWinner(23));
@@ -123,7 +125,7 @@ export class TournamentRunnerService {
     this.simulateGamesInQueue();
   }
 
-  simulateRound3(): void {
+  simulateSweet16(): void {
     this.queueSimulation(53, 3, this.getWinner(41), this.getWinner(42));
     this.queueSimulation(54, 3, this.getWinner(43), this.getWinner(44));
 
@@ -137,9 +139,26 @@ export class TournamentRunnerService {
     this.queueSimulation(52, 3, this.getWinner(39), this.getWinner(40));
 
     this.simulateGamesInQueue();
+
+    this.incrementSweet16Count(this.getWinner(33));
+    this.incrementSweet16Count(this.getWinner(34));
+    this.incrementSweet16Count(this.getWinner(35));
+    this.incrementSweet16Count(this.getWinner(36));
+    this.incrementSweet16Count(this.getWinner(37));
+    this.incrementSweet16Count(this.getWinner(38));
+    this.incrementSweet16Count(this.getWinner(39));
+    this.incrementSweet16Count(this.getWinner(40));
+    this.incrementSweet16Count(this.getWinner(41));
+    this.incrementSweet16Count(this.getWinner(42));
+    this.incrementSweet16Count(this.getWinner(43));
+    this.incrementSweet16Count(this.getWinner(44));
+    this.incrementSweet16Count(this.getWinner(45));
+    this.incrementSweet16Count(this.getWinner(46));
+    this.incrementSweet16Count(this.getWinner(47));
+    this.incrementSweet16Count(this.getWinner(48));
   }
 
-  simulateRound4(): void {
+  simulateElite8(): void {
     this.queueSimulation(60, 2, this.getWinner(53), this.getWinner(54));
     this.queueSimulation(61, 2, this.getWinner(55), this.getWinner(56));
     this.queueSimulation(58, 2, this.getWinner(49), this.getWinner(50));
@@ -148,13 +167,13 @@ export class TournamentRunnerService {
     this.simulateGamesInQueue();
   }
 
-  simulateRound5(): void {
-    this.queueSimulation(63, 1, this.getWinner(58), this.getWinner(60));
-    this.queueSimulation(62, 1, this.getWinner(59), this.getWinner(61));
+  simulateFinalFour(): void {
+    this.queueSimulation(63, 1, this.getWinner(58), this.getWinner(61));
+    this.queueSimulation(62, 1, this.getWinner(59), this.getWinner(60));
     this.simulateGamesInQueue();
   }
 
-  simulateRound6(): void {
+  simulateNationalChampionship(): void {
     this.queueSimulation(64, 0, this.getWinner(62), this.getWinner(63));
     this.simulateGamesInQueue();
 
@@ -162,11 +181,20 @@ export class TournamentRunnerService {
   }
 
   incrementWinnerCount(winner: Team) {
-    const currentWinnersTotalWinCount: number = this.overallWinnerCount.get(winner.name);
+    const currentWinnersTotalWinCount: number = this.overallWinnerCount.get(winner);
     if (currentWinnersTotalWinCount) {
-      this.overallWinnerCount.set(winner.name, currentWinnersTotalWinCount + 1);
+      this.overallWinnerCount.set(winner, currentWinnersTotalWinCount + 1);
     } else {
-      this.overallWinnerCount.set(winner.name, 1);
+      this.overallWinnerCount.set(winner, 1);
+    }
+  }
+
+  incrementSweet16Count(teamInSweet16: Team) {
+    const currentTeamEntriesInSweet16: number = this.sweet16EntryCountMap.get(teamInSweet16);
+    if (currentTeamEntriesInSweet16) {
+      this.sweet16EntryCountMap.set(teamInSweet16, currentTeamEntriesInSweet16 + 1);
+    } else {
+      this.sweet16EntryCountMap.set(teamInSweet16, 1);
     }
   }
 }

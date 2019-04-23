@@ -7,7 +7,7 @@ import {TournamentRunnerService} from '../tournament-runner.service';
   styleUrls: ['./bracket.component.css']
 })
 export class BracketComponent {
-  public simulationNumber = 1;
+  public simulationNumber = 100;
   public selectedYear = 2019;
   @Output() public onSelectedYearChange: EventEmitter<number> = new EventEmitter();
 
