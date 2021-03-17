@@ -16,6 +16,7 @@ import { TeamPipePipe } from './team-pipe.pipe';
 import { TournamentRunnerService } from './tournament-runner.service';
 import { AlgorithmBoxComponent } from './algorithm-box/algorithm-box.component';
 import { WinnersComponent } from './winners/winners.component';
+import { AlgorithmService } from './algorithm.service';
 
 @NgModule({
   declarations: [
@@ -36,7 +37,7 @@ import { WinnersComponent } from './winners/winners.component';
     FormsModule,
     HttpModule
   ],
-  providers: [TeamsService, TournamentRunnerService],
+  providers: [TeamsService, TournamentRunnerService, AlgorithmService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

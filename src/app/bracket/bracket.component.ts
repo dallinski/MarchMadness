@@ -8,7 +8,7 @@ import {TournamentRunnerService} from '../tournament-runner.service';
 })
 export class BracketComponent {
   public simulationNumber = 100;
-  public selectedYear = 2019;
+  public selectedYear = 2021;
   @Output() public onSelectedYearChange: EventEmitter<number> = new EventEmitter();
 
   private tournamentRunner: TournamentRunnerService;

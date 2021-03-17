@@ -5,7 +5,7 @@ import {TeamsService} from './teams.service';
 @Injectable()
 export class TournamentRunnerService {
   public overallWinnerCount: Map<Team, number>;
-  private sweet16EntryCountMap: Map<Team, number>;
+  public sweet16EntryCountMap: Map<Team, number>;
 
   protected teamsService: TeamsService;
 
@@ -140,7 +140,7 @@ export class TournamentRunnerService {
 
     this.simulateGamesInQueue();
 
-    this.incrementSweet16Count(this.getWinner(33));
+    this.incrementSweet16Count(this.getWinner(3));
     this.incrementSweet16Count(this.getWinner(34));
     this.incrementSweet16Count(this.getWinner(35));
     this.incrementSweet16Count(this.getWinner(36));
