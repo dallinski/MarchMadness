@@ -4,7 +4,7 @@ import {Team} from './team';
 @Injectable()
 export class AlgorithmService {
   public algorithm2017(game, team1: Team, team2: Team) {
-    // updated to 2017 CONF_SOS stats
+    // 2017 CONF_SOS stats
     const CONF_SOS = {
       'ACC': 1,
       'BIG12': 2,
@@ -96,7 +96,7 @@ export class AlgorithmService {
   };
 
   public algorithm2018(game, team1: Team, team2: Team) {
-    // updated to 2018 CONF_SOS stats
+    // 2018 CONF_SOS stats
     const CONF_SOS = {
       'BIG12': 1,   'BIGE': 2,     'ACC': 3,     'SEC': 4,
       'PAC12': 5,   'BIG10': 6,    'AAC': 7,     'MVC': 8,
@@ -170,7 +170,7 @@ export class AlgorithmService {
   };
 
   public algorithm2019(game, team1: Team, team2: Team) {
-    // updated to 2019 CONF_SOS stats
+    // 2019 CONF_SOS stats
     const CONF_SOS = {
       'Big 12': 1,        'ACC': 2,         'Big Ten': 3,  'SEC': 4,
       'Big East': 5,      'AAC': 6,         'Pac-12': 7,   'WCC': 8,
@@ -247,7 +247,7 @@ export class AlgorithmService {
   };
 
   public algorithm2021(game, team1: Team, team2: Team) {
-    // updated to 2021 CONF_SOS stats
+    // 2021 CONF_SOS stats
     const CONF_SOS = {
       'Big 12': 1,        'ACC': 7,         'Big Ten': 2,  'SEC': 3,
       'Big East': 6,      'AAC': 8,         'Pac-12': 5,   'WCC': 4,
